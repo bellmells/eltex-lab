@@ -20,7 +20,10 @@ static int cmp_func(const void *p1, const void *p2)
 
 int main(int argc, char const *argv[])
 {
-	struct worker workers[LEN];
+	// struct worker workers[LEN];
+	struct worker * workers = NULL;
+	workers = (struct worker *) malloc(sizeof(struct worker)*LEN);
+	if(NULL == workers) return -1;
 	for (int i = 0; i < LEN; ++i)
 	{
 		printf("Введите фамилию\n");
@@ -49,6 +52,8 @@ int main(int argc, char const *argv[])
 		printf("Введите сумму оклада\n");
 		printf("%d\n", workers[i].salary);
 	}
+
+	if (NULL != workers) free(workers);
 
 	return 0;
 }
